@@ -38,7 +38,7 @@ add_library(thermal
 
 target_include_directories(thermal PRIVATE
                            "${PROJECT_BINARY_DIR}"
-                           "${CMAKE_SOURCE_DIR}/car/include/"
+                           "${CMAKE_SOURCE_DIR}/agent/include/"
                            )
 
 target_include_directories(thermal PUBLIC

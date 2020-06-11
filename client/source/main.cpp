@@ -3,9 +3,10 @@
 #include <QLoggingCategory>
 #include <QtRemoteObjects/QRemoteObjectNode>
 #include <QTimer>
+#include "client.hpp"
 
 
-Q_LOGGING_CATEGORY(ozwdaemon, "ozw.daemon");
+Q_LOGGING_CATEGORY(sbcclient, "sbcbmc.client");
 
 #if 0
 #define APP_VERSION #carputer_VERSION_MAJOR.#carputer_VERSION_MINOR.#carputer_VERSION_PATCH
@@ -17,40 +18,21 @@ Q_LOGGING_CATEGORY(ozwdaemon, "ozw.daemon");
 int main(int argc, char *argv[]) {
 
     QCoreApplication a(argc, argv);
-    QCoreApplication::setApplicationName("carclient");
+    QCoreApplication::setApplicationName("sbcbmc-client");
     //QCoreApplication::setApplicationVersion(DEF2STR(APP_VERSION));
     QCoreApplication::setOrganizationName("DynamX");
     QCoreApplication::setOrganizationDomain("dynam.com");
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("CarClient");
+    parser.setApplicationDescription("SBCBMC Client");
     parser.addHelpOption();
     parser.addVersionOption();
 
     parser.process(a);
 
-    QRemoteObjectNode node(QUrl("tcp://127.0.0.1:1999"));
+    SBCBMCClient client;
 
-    QObject::connect(&node, &QRemoteObjectNode::remoteObjectAdded,
-                     [](const QRemoteObjectSourceLocation& info){
-        qDebug() << "New source added : " << info;
-    });
 
-    qDebug() << "Waiting for registry ";
-    node.waitForRegistry(10000);
-
-    qDebug() << "Already here sources : " << node.registry()->sourceLocations();
-
-    QTimer timer;
-    timer.start(5000);
-
-    QObject::connect(&timer, &QTimer::timeout,
-                     [&](){
-        qDebug() << "New sources list : " << node.registry()->sourceLocations();
-    });
-
-    QRemoteObjectDynamicReplica *plugin = node.acquireDynamic("plugins/thermal/thermal_zone1/x86_pkg_temp");
-    QRemoteObjectDynamicReplica *plugin2 = node.acquireDynamic("plugins/thermal/thermal_zone0/x86_pkg_temp");
 
 
     a.exec();

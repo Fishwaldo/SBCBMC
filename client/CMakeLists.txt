@@ -15,15 +15,20 @@ cmake_policy(SET CMP0071 NEW)
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS RemoteObjects REQUIRED)
+find_package(Qt5 COMPONENTS Qml REQUIRED)
+find_package(Qt5 COMPONENTS Quick REQUIRED)
+find_package(Qt5 COMPONENTS QuickControls2 REQUIRED)
 
 find_package(PkgConfig REQUIRED) 
 
 #configure_file(include/config.h.in include/config.h)
 
 set(HEADERS
+    include/client.hpp
     )
 set(SOURCES
     source/main.cpp
+    source/client.cpp
     )
 qt5_generate_repc(REPSOURCES
     ${CMAKE_SOURCE_DIR}/plugins/dcdc-usb-200/source/dcdc_usb_200.rep
@@ -39,6 +44,7 @@ add_executable(sbcbmc-client
     ${SOURCES}
     ${HEADERS}
     ${REPSOURCES}
+    sbcbmc-client.qrc
 )
 
 target_include_directories(sbcbmc-client PRIVATE
@@ -49,4 +55,4 @@ target_include_directories(sbcbmc-client PRIVATE
                            ${LibUSB_INCLUDE_DIRS}
                            )
 
-target_link_libraries(sbcbmc-client Qt5::Core Qt5::RemoteObjects)
+target_link_libraries(sbcbmc-client Qt5::Core Qt5::RemoteObjects Qt5::Qml Qt5::Quick)

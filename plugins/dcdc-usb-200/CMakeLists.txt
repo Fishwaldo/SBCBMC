@@ -48,7 +48,7 @@ add_library(dcdc-usb-200
 
 target_include_directories(dcdc-usb-200 PRIVATE
                            "${PROJECT_BINARY_DIR}"
-                           "${CMAKE_SOURCE_DIR}/car/include/"
+                           "${CMAKE_SOURCE_DIR}/agent/include/"
                            ${LibUSB_INCLUDE_DIRS}
                            )
 
