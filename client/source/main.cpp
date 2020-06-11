@@ -1,8 +1,9 @@
-#include <QCoreApplication>
+#include <QApplication>
 #include <QCommandLineParser>
 #include <QLoggingCategory>
 #include <QtRemoteObjects/QRemoteObjectNode>
 #include <QTimer>
+#include <QIcon>
 #include "client.hpp"
 
 
@@ -17,11 +18,18 @@ Q_LOGGING_CATEGORY(sbcclient, "sbcbmc.client");
 
 int main(int argc, char *argv[]) {
 
-    QCoreApplication a(argc, argv);
     QCoreApplication::setApplicationName("sbcbmc-client");
     //QCoreApplication::setApplicationVersion(DEF2STR(APP_VERSION));
     QCoreApplication::setOrganizationName("DynamX");
     QCoreApplication::setOrganizationDomain("dynam.com");
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+
+    QApplication a(argc, argv);
+
+QLoggingCategory::setFilterRules("qt.remoteobjects.debug=true");
+
+    QIcon::setThemeName("automotive");
 
     QCommandLineParser parser;
     parser.setApplicationDescription("SBCBMC Client");
@@ -31,9 +39,6 @@ int main(int argc, char *argv[]) {
     parser.process(a);
 
     SBCBMCClient client;
-
-
-
 
     a.exec();
 }

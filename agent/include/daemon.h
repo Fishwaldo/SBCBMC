@@ -7,12 +7,12 @@
 
 #include "pluginbase.h"
 
-class daemon : public QObject 
+class sbc_agent : public QObject 
 {
     Q_OBJECT
     public:
-        daemon(QObject *parent = nullptr);
-        ~daemon();
+        sbc_agent(QObject *parent = nullptr);
+        ~sbc_agent();
     private:
         QHash<QString, PluginBase *> m_Plugins;
         QRemoteObjectHost *m_rohost;

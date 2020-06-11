@@ -2,7 +2,7 @@
 #include "dcdc-usb-200.h"
 #include "thermal.h"
 
-daemon::daemon(QObject *parent) :
+sbc_agent::sbc_agent(QObject *parent) :
     QObject(parent)
 {
     this->m_roregistryhost = new QRemoteObjectRegistryHost(QUrl("tcp://0.0.0.0:1999"), this);
@@ -22,7 +22,7 @@ daemon::daemon(QObject *parent) :
     }
 }
 
-daemon::~daemon() 
+sbc_agent::~sbc_agent() 
 {
 
 }

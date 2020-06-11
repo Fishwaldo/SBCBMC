@@ -38,8 +38,7 @@ add_executable(sbcbmc-agent
 target_include_directories(sbcbmc-agent PRIVATE
                            "${PROJECT_BINARY_DIR}"
                            "${PROJECT_SOURCE_DIR}/include/"
-                           "${CMAKE_SOURCE_DIR}/plugins/thermal/include/"
-                           "${CMAKE_SOURCE_DIR}/plugins/thermal/"
+			   "${CMAKE_CURRENT_BINARY_DIR}/include/"
                            ${LibUSB_INCLUDE_DIRS}
                            )
 

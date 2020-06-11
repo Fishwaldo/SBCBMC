@@ -27,8 +27,7 @@ int main(int argc, char *argv[]) {
 
     parser.process(a);
 
-    daemon carserver;
-    carserver;
+    sbc_agent sbcagent;
 
     a.exec();
 }

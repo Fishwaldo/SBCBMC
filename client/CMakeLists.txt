@@ -18,6 +18,7 @@ find_package(Qt5 COMPONENTS RemoteObjects REQUIRED)
 find_package(Qt5 COMPONENTS Qml REQUIRED)
 find_package(Qt5 COMPONENTS Quick REQUIRED)
 find_package(Qt5 COMPONENTS QuickControls2 REQUIRED)
+find_package(Qt5 COMPONENTS Charts REQUIRED)
 
 find_package(PkgConfig REQUIRED) 
 
@@ -45,6 +46,9 @@ add_executable(sbcbmc-client
     ${HEADERS}
     ${REPSOURCES}
     sbcbmc-client.qrc
+    qml/qml.qrc
+    imagine-assets/imagine-assets.qrc
+    icons/icons.qrc
 )
 
 target_include_directories(sbcbmc-client PRIVATE
@@ -55,4 +59,4 @@ target_include_directories(sbcbmc-client PRIVATE
                            ${LibUSB_INCLUDE_DIRS}
                            )
 
-target_link_libraries(sbcbmc-client Qt5::Core Qt5::RemoteObjects Qt5::Qml Qt5::Quick)
+target_link_libraries(sbcbmc-client Qt5::Core Qt5::RemoteObjects Qt5::Qml Qt5::Quick Qt5::Charts)
