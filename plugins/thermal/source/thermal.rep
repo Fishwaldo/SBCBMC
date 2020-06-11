@@ -1,0 +1,4 @@
+class Thermal_Properties {
+    PROP(QVariant name SOURCEONLYSETTER)
+    PROP(QVariant temp SOURCEONLYSETTER)
+}

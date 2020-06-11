@@ -1,0 +1,8 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define catputer_VERSION_MAJOR @carputer_VERSION_MAJOR@
+#define carputer_VERSION_MINOR @carputer_VERSION_MINOR@
+#define carputer_VERSION_PATCH @carputer_VERSION_PATCH@
+
+#endif
